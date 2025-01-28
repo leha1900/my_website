@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор Сложных Паролей</title>
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Подключение шрифта Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Контейнер для навигационного меню -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Основной контейнер генератора -->
+    <div class="generator-container">
+        <div class="password-generator">
+            <h1>Генератор Сложных Паролей</h1>
+            <div class="output">
+                <input type="text" id="password-display" readonly placeholder="Ваш сгенерированный пароль">
+                <button id="copy-button">Копировать</button>
+            </div>
+            <div class="settings">
+                <label for="length">Длина пароля: <span id="length-value">12</span></label>
+                <input type="range" id="length" min="8" max="32" value="12">
+
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="uppercase" checked> Большие буквы (A-Z)</label>
+                    <label><input type="checkbox" id="lowercase" checked> Маленькие буквы (a-z)</label>
+                    <label><input type="checkbox" id="numbers" checked> Цифры (0-9)</label>
+                    <label><input type="checkbox" id="symbols" checked> Символы (!@#$%^&*)</label>
+                </div>
+            </div>
+            <button id="generate-button">Сгенерировать Пароль</button>
+        </div>
+    </div>
+
+    <!-- Подключение JavaScript -->
+    <script src="js/menu.js" defer></script>
+    <script src="js/passwort_gen.js" defer></script>
+</body>
+</html>
+
+
+

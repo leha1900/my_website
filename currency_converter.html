@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Конвертер валют с актуальными курсами и графиками изменений." />
+  <title>Конвертер валют</title>
+  <!-- Подключаем стили -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/converter.css" />
+  <link rel="stylesheet" href="https://unpkg.com/flag-icons/css/flag-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap&subset=cyrillic" rel="stylesheet" />
+  <!-- Подключение Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <!-- Подключаем скрипт -->
+  <script src="js/menu.js" defer></script>
+  <script src="js/currency_converter.js" defer></script>
+</head>
+<body>
+  <!-- Ваша панель с верхним меню -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Основной контент -->
+  <main class="converter-container">
+    <h1 class="converter-title">Конвертер валют</h1>
+    
+    <!-- Строка с валютами -->
+    <div class="converter-row currencies-row">
+      <div class="currency-wrapper">
+        <label for="fromCurrencySearch" class="visually-hidden">Поиск валюты для конвертации из</label>
+        <input type="text" id="fromCurrencySearch" placeholder="Поиск..." class="currency-search" data-target="fromCurrency" />
+        <div class="converter-select-wrapper">
+          <span class="converter-flag fi" id="fromFlag" aria-hidden="true"></span>
+          <select id="fromCurrency" aria-label="Выберите валюту для конвертации из"></select>
+        </div>
+      </div>
+      
+      <!-- Кнопка обмена валют -->
+      <button id="swapBtn" class="swap-button" aria-label="Поменять местами валюты">↔</button>
+      
+      <div class="currency-wrapper">
+        <label for="toCurrencySearch" class="visually-hidden">Поиск валюты для конвертации в</label>
+        <input type="text" id="toCurrencySearch" placeholder="Поиск..." class="currency-search" data-target="toCurrency" />
+        <div class="converter-select-wrapper">
+          <span class="converter-flag fi" id="toFlag" aria-hidden="true"></span>
+          <select id="toCurrency" aria-label="Выберите валюту для конвертации в"></select>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Строка с суммой -->
+    <div class="converter-row amount-row">
+      <label for="amount">Сумма:</label>
+      <input type="number" id="amount" value="1" min="0" step="0.01" aria-label="Введите сумму для конвертации" />
+      <span class="amount-hint">Введите сумму, которую вы хотите конвертировать.</span>
+    </div>
+    
+    <!-- Результат -->
+    <div class="converter-result" id="result" aria-live="polite">Результат: </div>
+
+    <!-- История конвертаций -->
+    <section class="history-container" aria-labelledby="history-heading">
+      <h3 id="history-heading">История конвертаций</h3>
+      <ul id="historyList" aria-label="Список последних конвертаций"></ul>
+    </section>
+  </main>
+
+  <!-- Подвал -->
+  <footer>
+    <p>&copy; 2025 Конвертер валют. Все права защищены.</p>
+  </footer>
+</body>
+</html>

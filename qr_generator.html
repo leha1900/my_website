@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор QR-кодов</title>
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Подключение шрифта Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <!-- Подключение библиотеки для QR-кода -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+</head>
+<body>
+
+    <!-- Контейнер для навигационного меню -->
+    <div id="navbar-placeholder"></div>
+
+    <div class="generator-container">
+        <div class="qr-generator">
+            <h1>Генератор QR-кодов</h1>
+            <div class="qr-input-container">
+                <label for="qr-text">Введите текст или ссылку:</label>
+                <input type="text" id="qr-text" placeholder="Например: https://example.com">
+            </div>
+            <div class="button-container">
+                <button id="generate-qr-button">Сгенерировать QR-код</button>
+            </div>
+            <div class="qr-output-container">
+                <div id="qrcode"></div>
+            </div>
+            <div class="button-container">
+                <button id="download-qr-button">Скачать QR-код</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключение JavaScript -->
+    <script src="js/menu.js" defer></script>
+    <script src="js/qr_gen.js" defer></script>
+</body>
+</html>
+

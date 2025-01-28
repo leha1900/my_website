@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Ипотечный калькулятор</title>
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Подключение шрифта Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <!-- Подключение необходимых библиотек с атрибутом defer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/10.3.1/decimal.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.24/jspdf.plugin.autotable.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Контейнер для навигационного меню -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Основной контент страницы -->
+    <div class="container">
+        <h1>Ипотечный калькулятор</h1>
+        <form id="mortgage-form">
+            <table class="form-table">
+                <!-- Выбор типа кредита -->
+                <tr>
+                    <td><label for="loan-type">Тип кредита:</label></td>
+                    <td>
+                        <select id="loan-type" required>
+                            <option value="annuity">Аннуитетный</option>
+                            <option value="differentiated">Дифференцированный</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <!-- Выбор режима расчета -->
+                <tr>
+                    <td><label for="calculation-type">Что рассчитать:</label></td>
+                    <td>
+                        <select id="calculation-type" required>
+                            <option value="monthly-payment">Ежемесячный платеж</option>
+                            <option value="remaining-balance">Остаток задолженности</option>
+                            <option value="loan-term">Срок кредита</option>
+                            <option value="total-overpayment">Общая переплата</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <!-- Поля ввода -->
+                <tr class="field-row" data-field="loan-amount">
+                    <td><label for="loan-amount">Сумма кредита (₽): <span class="required">*</span></label></td>
+                    <td>
+                        <input type="number" id="loan-amount" placeholder="Введите сумму кредита" required>
+                    </td>
+                </tr>
+
+                <tr class="field-row" data-field="closing-fee">
+                    <td><label for="closing-fee">Плата за оформление (₽):</label></td>
+                    <td>
+                        <input type="number" id="closing-fee" value="0">
+                    </td>
+                </tr>
+
+                <tr class="field-row" data-field="interest-rate">
+                    <td><label for="interest-rate">Процентная ставка (% годовых): <span class="required">*</span></label></td>
+                    <td>
+                        <input type="number" id="interest-rate" step="0.01" placeholder="Введите процентную ставку" required>
+                    </td>
+                </tr>
+
+                <tr class="field-row" data-field="initial-amortization">
+                    <td><label for="initial-amortization">Начальное погашение (% годовых):</label></td>
+                    <td>
+                        <input type="number" id="initial-amortization" step="0.01" placeholder="Введите начальное погашение">
+                    </td>
+                </tr>
+
+                <tr class="field-row" data-field="monthly-payment">
+                    <td><label for="monthly-payment">Ежемесячный платеж (₽): <span class="required">*</span></label></td>
+                    <td>
+                        <input type="number" id="monthly-payment" placeholder="Введите ежемесячный платеж" required>
+                    </td>
+                </tr>
+
+                <tr class="field-row" data-field="loan-term">
+                    <td><label for="loan-term">Срок кредита (лет): <span class="required">*</span></label></td>
+                    <td>
+                        <input type="number" id="loan-term" placeholder="Введите срок кредита" required>
+                    </td>
+                </tr>
+
+                <tr class="field-row" data-field="period">
+                    <td><label for="period">Период (месяцы): <span class="required">*</span></label></td>
+                    <td>
+                        <input type="number" id="period" placeholder="Введите период в месяцах" required>
+                    </td>
+                </tr>
+
+                <tr class="field-row" data-field="annual-extra-payment">
+                    <td><label for="annual-extra-payment">Ежегодные дополнительные платежи (₽):</label></td>
+                    <td>
+                        <input type="number" id="annual-extra-payment" value="0">
+                    </td>
+                </tr>
+
+                <tr class="field-row" data-field="individual-extra-payments">
+                    <td><label for="individual-extra-payments">Индивидуальные дополнительные платежи:</label></td>
+                    <td>
+                        <textarea id="individual-extra-payments" placeholder="Введите даты и суммы в формате: ДД.ММ.ГГГГ-Сумма, например: 15.06.2023-100000"></textarea>
+                    </td>
+                </tr>
+
+                <tr class="field-row" data-field="start-date">
+                    <td><label for="start-date">Дата начала выплат:</label></td>
+                    <td>
+                        <input type="date" id="start-date">
+                    </td>
+                </tr>
+
+                <tr class="field-row" data-field="calculation-accuracy">
+                    <td><label for="calculation-accuracy">Точность расчета:</label></td>
+                    <td>
+                        <select id="calculation-accuracy">
+                            <option value="standard">Стандартная</option>
+                            <option value="high">Высокая</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Кнопки -->
+            <div class="button-container">
+                <button type="button" id="calculate-button">Рассчитать</button>
+            </div>
+        </form>
+
+        <!-- Результаты -->
+        <div id="results">
+            <!-- Здесь будут отображаться результаты расчета -->
+        </div>
+
+        <!-- Кнопка для отображения детальной таблицы -->
+        <div class="button-container">
+            <button type="button" id="show-details-button" style="display: none;">Показать детальную таблицу</button>
+        </div>
+
+        <!-- Канвас для графика -->
+        <canvas id="balanceChart" width="400" height="200"></canvas>
+
+        <!-- Кнопки экспорта -->
+        <div class="export-buttons">
+            <button type="button" id="export-pdf">Экспорт в PDF</button>
+            <button type="button" id="export-excel">Экспорт в Excel</button>
+        </div>
+    </div>
+
+    <!-- Подключение JavaScript файлов с атрибутом defer -->
+    <script src="js/menu.js" defer></script>
+    <script src="js/script.js" defer></script>
+</body>
+</html>
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Генератор Чисел</title>
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Подключение шрифтов Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <!-- Подключение JavaScript файлов -->
+    <script src="js/menu.js" defer></script>
+    <script src="js/number_generator.js" defer></script>
+</head>
+<body>
+    <!-- Навигационное меню -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Основной контейнер страницы -->
+    <div class="container">
+        <h1>Генератор Чисел</h1>
+        <form id="generator-form">
+            <table class="form-table">
+                <!-- Минимальное значение -->
+                <tr>
+                    <td><label for="min-value">Минимальное значение:</label></td>
+                    <td><input type="number" id="min-value" placeholder="Введите минимальное значение" required></td>
+                </tr>
+
+                <!-- Максимальное значение -->
+                <tr>
+                    <td><label for="max-value">Максимальное значение:</label></td>
+                    <td><input type="number" id="max-value" placeholder="Введите максимальное значение" required></td>
+                </tr>
+
+                <!-- Количество чисел -->
+                <tr>
+                    <td><label for="quantity">Количество чисел:</label></td>
+                    <td><input type="number" id="quantity" placeholder="Введите количество чисел" min="1" required></td>
+                </tr>
+
+                <!-- Уникальность чисел -->
+                <tr>
+                    <td><label for="unique">Уникальные числа:</label></td>
+                    <td>
+                        <input type="checkbox" id="unique">
+                        <label for="unique">Да</label>
+                    </td>
+                </tr>
+
+                <!-- Тип чисел -->
+                <tr>
+                    <td><label for="integer">Тип чисел:</label></td>
+                    <td>
+                        <input type="checkbox" id="integer" checked>
+                        <label for="integer">Только целые</label>
+                    </td>
+                </tr>
+            </table>
+            <!-- Кнопка генерации -->
+            <div class="button-container">
+                <button type="submit" id="generate-button">Сгенерировать</button>
+            </div>
+        </form>
+
+        <!-- Область для результатов -->
+        <div id="results">
+            <!-- Здесь будут отображаться сгенерированные числа -->
+        </div>
+    </div>
+</body>
+</html>
+

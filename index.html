@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница | Калькуляторы и генераторы онлайн</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Подключение шрифтов Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <!-- Подключение иконок Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+
+    <style>
+        /* Основные стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Приветственный блок */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/hero-bg.jpg') no-repeat center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-top: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Карточки категорий */
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .category-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 30%;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 15px;
+        }
+
+        .category-card h2 {
+            font-size: 1.5em;
+            margin: 0 0 10px;
+            color: #4CAF50;
+        }
+
+        .category-card p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        /* Иконки */
+        .category-icon {
+            font-size: 3em;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-card {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .category-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигационное меню -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Контент главной страницы -->
+    <div class="container">
+        <!-- Приветственный блок -->
+        <div class="hero">
+            <h1>Добро пожаловать!</h1>
+            <p>Используйте наши инструменты для быстрых и точных расчетов и генераций.</p>
+        </div>
+
+        <!-- Карточки с категориями -->
+        <div class="categories">
+            <div class="category-card">
+                <img src="images/calculator-image.jpg" alt="Калькуляторы" class="category-image">
+                <h2>Калькуляторы</h2>
+                <p>Финансовые, кредитные, валютные и другие калькуляторы для ваших нужд.</p>
+            </div>
+            <div class="category-card">
+                <img src="images/generator-image.jpg" alt="Генераторы" class="category-image">
+                <h2>Генераторы</h2>
+                <p>Создавайте уникальные данные, пароли и многое другое.</p>
+            </div>
+            <div class="category-card">
+                <img src="images/simplicity-image.jpg" alt="Простота и удобство" class="category-image">
+                <h2>Простота и удобство</h2>
+                <p>Интуитивно понятный интерфейс и быстрые результаты.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подключение JavaScript -->
+    <script src="js/menu.js" defer></script>
+</body>
+</html>

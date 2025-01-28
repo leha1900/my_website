@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+
+    <meta charset="UTF-8">
+    <title>Калькулятор утилизационного сбора</title>
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Подключение шрифта Roboto -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <!-- Подключение JavaScript -->
+    <script src="js/utilization_fee_calculator.js" defer></script>
+</head>
+<body>
+    <!-- Навигационное меню -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Основной контейнер страницы -->
+    <div class="container">
+        <h1>Калькулятор утилизационного сбора</h1>
+        <form id="utilization-form">
+            <table class="form-table">
+                <!-- Категория транспортного средства -->
+                <tr>
+                    <td><label for="vehicle-category">Категория транспортного средства:</label></td>
+                    <td>
+                        <select id="vehicle-category" required>
+                            <option value="car">Легковой автомобиль</option>
+                            <option value="truck">Грузовой автомобиль</option>
+                            <option value="special">Спецтехника</option>
+                            <option value="moto">Мотоцикл</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <!-- Возраст транспортного средства -->
+                <tr>
+                    <td><label for="vehicle-age">Возраст транспортного средства:</label></td>
+                    <td>
+                        <select id="vehicle-age" required>
+                            <option value="new">Новый</option>
+                            <option value="used">С пробегом</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <!-- Происхождение транспортного средства -->
+                <tr>
+                    <td><label for="vehicle-origin">Происхождение транспортного средства:</label></td>
+                    <td>
+                        <select id="vehicle-origin" required>
+                            <option value="domestic">Российский</option>
+                            <option value="imported">Импортный</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <!-- Объем двигателя -->
+                <tr>
+                    <td><label for="engine-volume">Объем двигателя (см³):</label></td>
+                    <td>
+                        <input type="number" id="engine-volume" placeholder="Введите объем двигателя" min="0" required>
+                    </td>
+                </tr>
+            </table>
+            <!-- Кнопка расчета -->
+            <div class="button-container">
+                <button type="button" id="calculate-button">Рассчитать</button>
+            </div>
+        </form>
+
+        <!-- Результаты -->
+        <div id="results">
+            <!-- Здесь будут отображаться результаты расчета -->
+        </div>
+    </div>
+
+    <!-- Подключение JavaScript для загрузки навигации -->
+    <script src="js/menu.js" defer></script>
+</body>
+</html>
+

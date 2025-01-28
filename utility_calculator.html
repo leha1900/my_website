@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор коммунальных платежей</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Подключение шрифтов Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Навигационное меню -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Контент страницы -->
+    <div class="container">
+        <h1>Калькулятор коммунальных платежей</h1>
+        <form id="utility-form">
+            <table class="form-table">
+                <tr>
+                    <td><label for="electricity-usage">Электричество (кВт⋅ч):</label></td>
+                    <td><input type="number" id="electricity-usage" placeholder="Введите количество потребленных кВт⋅ч"></td>
+                </tr>
+                <tr>
+                    <td><label for="electricity-rate">Тариф на электричество (₽/кВт⋅ч):</label></td>
+                    <td><input type="number" id="electricity-rate" value="5.5" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td><label for="water-usage">Водоснабжение (куб. м):</label></td>
+                    <td><input type="number" id="water-usage" placeholder="Введите количество потребленной воды"></td>
+                </tr>
+                <tr>
+                    <td><label for="water-rate">Тариф на воду (₽/куб. м):</label></td>
+                    <td><input type="number" id="water-rate" value="35.0" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td><label for="gas-usage">Газ (куб. м):</label></td>
+                    <td><input type="number" id="gas-usage" placeholder="Введите количество потребленного газа"></td>
+                </tr>
+                <tr>
+                    <td><label for="gas-rate">Тариф на газ (₽/куб. м):</label></td>
+                    <td><input type="number" id="gas-rate" value="6.0" step="0.01"></td>
+                </tr>
+                <tr>
+                    <td><label for="heating-cost">Отопление (фиксированная плата, ₽):</label></td>
+                    <td><input type="number" id="heating-cost" value="1500"></td>
+                </tr>
+                <tr>
+                    <td><label for="other-expenses">Другие расходы (₽):</label></td>
+                    <td><input type="number" id="other-expenses" value="0"></td>
+                </tr>
+            </table>
+            <div class="button-container">
+                <button type="button" id="calculate-button">Рассчитать</button>
+            </div>
+        </form>
+
+        <!-- Результаты -->
+        <div id="results">
+            <!-- Здесь будут отображаться результаты расчета -->
+        </div>
+    </div>
+
+    <!-- Подключение JavaScript -->
+    <script>
+        // Загружаем навигационное меню из файла navbar.html
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("partials/navbar.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("navbar-placeholder").innerHTML = data;
+                    initializeMobileMenu(); // Инициализация мобильного меню
+                })
+                .catch(error => {
+                    console.error('Ошибка при загрузке навигационного меню:', error);
+                });
+
+            // Инициализация мобильного меню
+            function initializeMobileMenu() {
+                const mobileMenu = document.getElementById('mobile-menu');
+                const navbarMenu = document.querySelector('.navbar-menu');
+
+                if (mobileMenu && navbarMenu) {
+                    mobileMenu.addEventListener('click', function () {
+                        mobileMenu.classList.toggle('is-active');
+                        navbarMenu.classList.toggle('active');
+                    });
+                }
+            }
+        });
+    </script>
+    <script src="js/utility_calculator.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор растаможки автомобиля</title>
+    <!-- Подключение CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Подключение шрифтов Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <!-- Подключение JavaScript -->
+    <script src="js/menu.js" defer></script>
+    <script src="js/customs_duty_calculator.js" defer></script>
+</head>
+<body>
+    <!-- Навигационное меню -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Основной контейнер страницы -->
+    <div class="container">
+        <h1>Калькулятор растаможки автомобиля</h1>
+        <form id="customs-form">
+            <table class="form-table">
+                <!-- Тип автомобиля -->
+                <tr>
+                    <td><label for="vehicle-type">Тип транспортного средства:</label></td>
+                    <td>
+                        <select id="vehicle-type" required>
+                            <option value="car">Легковой автомобиль</option>
+                            <option value="truck">Грузовик</option>
+                            <option value="moto">Мотоцикл</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <!-- Возраст автомобиля -->
+                <tr>
+                    <td><label for="vehicle-age">Возраст автомобиля:</label></td>
+                    <td>
+                        <select id="vehicle-age" required>
+                            <option value="new">Новый (до 3 лет)</option>
+                            <option value="3-5">От 3 до 5 лет</option>
+                            <option value="5-more">Более 5 лет</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <!-- Объем двигателя -->
+                <tr>
+                    <td><label for="engine-volume">Объем двигателя (см³):</label></td>
+                    <td>
+                        <input type="number" id="engine-volume" placeholder="Введите объем двигателя" min="0" required>
+                    </td>
+                </tr>
+
+                <!-- Стоимость автомобиля -->
+                <tr>
+                    <td><label for="vehicle-price">Стоимость автомобиля (евро):</label></td>
+                    <td>
+                        <input type="number" id="vehicle-price" placeholder="Введите стоимость автомобиля" min="0" required>
+                    </td>
+                </tr>
+
+                <!-- Тип топлива -->
+                <tr>
+                    <td><label for="fuel-type">Тип топлива:</label></td>
+                    <td>
+                        <select id="fuel-type" required>
+                            <option value="petrol">Бензин</option>
+                            <option value="diesel">Дизель</option>
+                            <option value="electric">Электромобиль</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Кнопка расчета -->
+            <div class="button-container">
+                <button type="button" id="calculate-button">Рассчитать растаможку</button>
+            </div>
+        </form>
+
+        <!-- Результаты -->
+        <div id="results">
+            <!-- Здесь будут отображаться результаты расчета -->
+        </div>
+    </div>
+
+    <!-- Подключение JavaScript для загрузки навигации (Если необходимо) -->
+    <script>
+        // Загружаем навигационное меню из файла navbar.html
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("partials/navbar.html")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Ошибка загрузки файла navbar.html");
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById("navbar-placeholder").innerHTML = data;
+                    initializeMobileMenu(); // Инициализация мобильного меню
+                })
+                .catch(error => {
+                    console.error('Ошибка при загрузке навигационного меню:', error);
+                });
+
+            // Инициализация мобильного меню
+            function initializeMobileMenu() {
+                const mobileMenu = document.getElementById('mobile-menu');
+                const navbarMenu = document.querySelector('.navbar-menu');
+
+                if (mobileMenu && navbarMenu) {
+                    mobileMenu.addEventListener('click', function () {
+                        mobileMenu.classList.toggle('is-active');
+                        navbarMenu.classList.toggle('active');
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
