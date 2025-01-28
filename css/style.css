@@ -1,0 +1,766 @@
+ /* Определение CSS-переменных для цветов и основных размеров */
+ :root {
+    --primary-color: #3498db;
+    --primary-hover: #2980b9;
+    --secondary-color: #2ecc71;
+    --secondary-hover: #27ae60;
+    --background-color: #f4f6f9;
+    --container-bg: #ffffff;
+    --text-color: #333333;
+    --border-color: #bdc3c7;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --font-family: 'Roboto', sans-serif;
+}
+
+/* Общие стили для страницы */
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: var(--container-bg);
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--shadow-color);
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Стилизация таблиц форм */
+.form-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.form-table td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+label {
+    font-size: 1em;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1em;
+}
+
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Стилизация контейнера кнопок */
+.button-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+button {
+    padding: 12px 25px;
+    background-color: var(--primary-color);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Стилизация блока результатов */
+.result-summary {
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    text-align: center;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Стилизация таблиц результатов */
+#results table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#results th,
+#results td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+#results th {
+    background-color: #ecf0f1;
+    font-weight: 600;
+}
+
+.export-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.export-buttons button {
+    margin: 5px;
+    background-color: var(--secondary-color);
+}
+
+.export-buttons button:hover {
+    background-color: var(--secondary-hover);
+}
+
+/* Стилизация навигационного меню */
+/* Общие стили для навигации */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 10px 20px;
+    color: #fff;
+    font-family: var(--font-family);
+    position: relative;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px; /* Максимальная ширина для центрирования */
+    margin: 0 auto;    /* Центрирование блока по середине экрана */
+    padding: 0 20px;   /* Боковые отступы для "воздуха" */
+}
+
+.navbar-logo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-logo:hover {
+    color: #ecf0f1;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-item {
+    position: relative;
+    margin-left: 20px;
+}
+
+.navbar-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    padding-right: 55px; /* Отступ для стрелки */
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Добавление стрелки через псевдоэлемент ::after */
+.navbar-item.dropdown .navbar-link::after {
+    content: '';
+    font-size: 10px;
+    margin-left: 5px;
+    position: absolute;
+    right: 5px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+/* Стрелка при наведении */
+.navbar-item.dropdown:hover .navbar-link::after {
+    content: '▼';
+    opacity: 1;
+    transform: rotate(180deg);
+}
+
+/* Hover для ссылок */
+.navbar-link:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Выпадающее меню */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--primary-color);
+    border-radius: 8px;
+    overflow: hidden;
+    list-style: none;
+    min-width: 200px;
+    z-index: 10;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-item {
+    width: 100%;
+}
+
+.dropdown-link {
+    color: #fff;
+    padding: 10px 20px;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-link:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Показ выпадающего меню при наведении */
+.navbar-item.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Мобильное меню */
+.navbar-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+.navbar-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+/* Анимация для активного мобильного меню */
+.navbar-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.navbar-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--primary-color);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 10px 0;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+    }
+
+    .navbar-item {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .navbar-link {
+        padding: 15px 20px;
+        padding-right: 0; /* Убираем отступ справа для мобильных устройств */
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    /* Изменяем выпадающее меню для мобильных устройств */
+    .navbar-item.dropdown .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background-color: var(--secondary-color);
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .navbar-item.dropdown .dropdown-link {
+        padding: 10px 0;
+    }
+
+    /* Скрываем стрелку вниз на мобильных устройствах */
+    .navbar-item.dropdown .navbar-link::after {
+        display: none;
+    }
+}
+
+/* Стилизация экспортных кнопок */
+.export-buttons button {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+.export-buttons button:hover {
+    background-color: var(--secondary-hover);
+}
+
+
+/* Стилизация кнопок копирования и скачивания */
+#results .result-summary button {
+    padding: 8px 15px;
+    margin: 10px 5px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+#results .result-summary button#copy-button {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+#results .result-summary button#download-button {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+#results .result-summary button:hover {
+    opacity: 0.9;
+}
+.hidden {
+    display: none;
+}
+/* Стилизация контейнера калькулятора */
+/* Основные стили страницы */
+body {
+    background: #f4f4f4;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Стилизация контейнера калькулятора */
+.calculator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Основные стили калькулятора */
+.calculator {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 380px;
+}
+
+/* Дисплей калькулятора */
+.display {
+    background: #222;
+    color: #0f0;
+    font-size: 26px;
+    text-align: right;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    direction: rtl;
+    min-height: 50px;
+}
+
+/* Сетка кнопок */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+}
+
+/* Общие стили кнопок */
+.btn {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-align: center;
+}
+
+/* Стили при наведении */
+.btn:hover {
+    background: #d0d0d0;
+}
+
+/* Стили для функциональных кнопок */
+.btn.func {
+    background: #bdc3c7;
+    color: #333;
+}
+
+.btn.func:hover {
+    background: #aeb6bf;
+}
+
+/* Стили для операторов */
+.btn.operator {
+    background: #f39c12;
+    color: #fff;
+}
+
+.btn.operator:hover {
+    background: #e67e22;
+}
+
+/* Стили для кнопки равенства */
+.btn.equal {
+    background: #27ae60;
+    color: #fff;
+    grid-column: span 2;
+}
+
+.btn.equal:hover {
+    background: #2ecc71;
+}
+
+/* Стили для кнопок управления */
+.btn.control {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.btn.control:hover {
+    background: #c0392b;
+}
+
+/* Стили для кнопок 0 и 00 */
+.btn.zero {
+    grid-column: span 2;
+}
+
+.btn.double-zero {
+    grid-column: span 2;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 480px) {
+    .calculator {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .display {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .btn {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+body {
+    background: #f4f4f4;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.generator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.password-generator {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.password-generator h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.output {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#password-display {
+    width: 70%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+#copy-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    background: #3498db;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#copy-button:hover {
+    background: #2980b9;
+}
+
+.settings {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.settings label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #555;
+}
+
+#length {
+    width: 100%;
+    margin-top: 5px;
+}
+
+#length-value {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.checkbox-group label {
+    margin-bottom: 8px;
+    font-weight: 400;
+    color: #333;
+}
+
+#generate-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    background: #2ecc71;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#generate-button:hover {
+    background: #27ae60;
+}
+
+@media (max-width: 480px) {
+    .password-generator {
+        padding: 20px;
+    }
+
+    #password-display {
+        width: 60%;
+        font-size: 14px;
+    }
+
+    #copy-button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    #generate-button {
+        font-size: 16px;
+        padding: 10px;
+    }
+}
+.generator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.qr-generator {
+    background: var(--container-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.qr-generator h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.qr-input-container {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.qr-input-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #555;
+}
+
+.qr-input-container input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    transition: border-color 0.3s ease;
+}
+
+.qr-input-container input[type="text"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(52,152,219,0.5);
+}
+
+.qr-output-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-output-container #qrcode {
+    width: 256px;
+    height: 256px;
+}
+
+@media (max-width: 480px) {
+    .qr-generator {
+        padding: 20px;
+    }
+
+    .qr-output-container #qrcode {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+.feedback-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(52,152,219,0.5);
+}
+
+
+
+
